@@ -1,2 +1,2 @@
 console.log("Imported Module");
-export default 500;
+export default 670;
