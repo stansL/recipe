@@ -1,7 +1,20 @@
-import str from './models/Search';
-import {ID as identifier,add as summation,mult as product} from './views/searchView';
-import * as searchView from './views/searchView'
+import axios from 'axios';
 
-console.log(str);
-console.log(`using imported functions: ${product(identifier,2)}. ${str}`);
-console.log(`Using alternative functions: ${searchView.mult(identifier,2)}. ${str}`);
+async function getResults(query) {
+
+    const apiKey = 'dc4980a9b4564a97b831ea8e6ce3e6d1';
+    try {
+        const result = await axios(`https://api.spoonacular.com/recipes/search?apiKey=${apiKey}&query=${query}&number=10`);
+        const recipes = result.data.results;
+        console.log(recipes);
+    } catch (error) {
+        console.log('An error occured!');
+        console.log(error);
+        
+    }
+    
+
+    
+}
+
+getResults('pizza');
