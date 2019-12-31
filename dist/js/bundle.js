@@ -3858,7 +3858,7 @@ eval("\n\nvar _test = __webpack_require__(/*! ./test */ \"./src/js/test.js\");\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nconsole.log(\"Imported Module\");\nexports.default = 500;\n\n//# sourceURL=webpack:///./src/js/test.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nconsole.log(\"Imported Module\");\nexports.default = 670;\n\n//# sourceURL=webpack:///./src/js/test.js?");
 
 /***/ }),
 
