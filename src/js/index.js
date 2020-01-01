@@ -1,20 +1,39 @@
-import axios from 'axios';
+import Search from './models/Search';
+import * as searchView from './views/searchView';
+import { elements } from './views/base';
+/**
+ * Global State of the App
+ *  - Search Object
+ *  - Current Recipe Object
+ *  - Shopping List Object
+ *  - Like Recipes
+ */
+const state = {};
+const controlSearch = async () => {
+	console.log('Activated the control search');
+	// 1. Get the query from the view
+	const query = searchView.getInput(); //TODO
+	console.log(query);
+	// 2. create new search object
+	if (query) {
+		state.search = new Search(query);
+	}
+	// 3. Prepare UI for results
+	searchView.clearResults(); //clear the previous results
 
-async function getResults(query) {
+	// 4. Search for recipes
+	await state.search.getResults();
+	// 5. Clear search query
+	searchView.clearInput(); //clear the search input
 
-    const apiKey = 'dc4980a9b4564a97b831ea8e6ce3e6d1';
-    try {
-        const result = await axios(`https://api.spoonacular.com/recipes/search?apiKey=${apiKey}&query=${query}&number=10`);
-        const recipes = result.data.results;
-        console.log(recipes);
-    } catch (error) {
-        console.log('An error occured!');
-        console.log(error);
-        
-    }
-    
+	// 6. Render results to the UI
+	searchView.renderResults(state.search.recipes);
+};
 
-    
-}
+elements.searchForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+	controlSearch();
+});
 
-getResults('pizza');
+// const search = new Search('pizza');
+// console.log(search);
