@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {apiKey} from '../config';
 
 export default class Search {
 	constructor(query) {
@@ -6,7 +7,6 @@ export default class Search {
 	}
 
 	async getResults() {
-		const apiKey = 'dc4980a9b4564a97b831ea8e6ce3e6d1';
 		try {
 			const result = await axios(
 				`https://api.spoonacular.com/recipes/search?apiKey=${apiKey}&query=${this.query}&number=30`

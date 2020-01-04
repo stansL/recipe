@@ -1,4 +1,5 @@
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import * as searchView from './views/searchView';
 import { elements, renderLoader, clearLoader, elementStrings } from './views/base';
 /**
@@ -47,5 +48,14 @@ elements.resultsPages.addEventListener('click', (e) => {
 		const gotoPage = parseInt(btn.dataset.goto,10);
 		searchView.clearResults();
 		searchView.renderResults(state.search.recipes,gotoPage);
+		
 	}
 });
+
+
+/**
+ * RECIPE Controller
+ */
+state.recipe = new Recipe(801710);
+state.recipe.getRecipe();
+console.log(state.recipe);
