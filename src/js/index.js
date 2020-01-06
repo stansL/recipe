@@ -36,16 +36,9 @@ const controlSearch = async () => {
 	} catch (error) {
 		console.log('Error while fetching recipes!');
 		clearLoader();
+
 	}
 
-	// 4. Search for recipes
-	await state.search.getResults();
-	// 5. Clear search query
-	searchView.clearInput(); //clear the search input
-	clearLoader();
-
-	// 6. Render results to the UI
-	searchView.renderResults(state.search.recipes);
 };
 
 elements.searchForm.addEventListener('submit', (e) => {
@@ -100,4 +93,4 @@ const controlRecipe = async () => {
 	}
 }
 
-['hashCange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));

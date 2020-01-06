@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {apiKey} from '../config';
+import { apiKey } from '../config';
 
 export default class Recipe {
 	constructor(recipeId) {
 		this.recipeId = recipeId;
 	}
 
-	async getRecipe(){
+	async getRecipe() {
 		try {
 			const result = await axios(
 				`https://api.spoonacular.com/recipes/${this.recipeId}/information?apiKey=${apiKey}&includeNutrition=true`
@@ -23,5 +23,13 @@ export default class Recipe {
 			console.log('An error occured!');
 			console.log(error);
 		}
+	} 
+
+	parseIngredients() {
+		this.ingredients = this.ingredients.map(ingredient => {
+			ingredient = ingredient.lowerCase();
+
+		});
 	}
+
 }
